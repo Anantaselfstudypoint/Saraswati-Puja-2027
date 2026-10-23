@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "collection": {
+      "title": "Puja Donation Record",
+      "description": "Represents an individual donation or member collection for Saraswati Puja 2027.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the donation record" },
+        "receiptNumber": { "type": "string", "description": "Unique receipt code, e.g. SP2027-0001-492" },
+        "name": { "type": "string", "description": "Donor or member full name" },
+        "amount": { "type": "number", "description": "Donation amount in INR" },
+        "mobile": { "type": "string", "description": "10-digit mobile number" },
+        "uniqueId": { "type": "string", "description": "Flat, ward, or member ID" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "UPI", "Online"], "description": "Payment mode" },
+        "date": { "type": "string", "format": "date", "description": "Donation date (YYYY-MM-DD)" },
+        "transactionId": { "type": "string", "description": "Transaction/UTR ID for online/UPI transfers" },
+        "notes": { "type": "string", "description": "Optional notes or dedication" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Record creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["id", "receiptNumber", "name", "amount", "paymentMethod", "date"]
+    },
+    "expense": {
+      "title": "Puja Expense Record",
+      "description": "Represents an expense incurred for Saraswati Puja 2027.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the expense record" },
+        "name": { "type": "string", "description": "Expense item or purpose" },
+        "amount": { "type": "number", "description": "Expense amount in INR" },
+        "date": { "type": "string", "format": "date", "description": "Expense date (YYYY-MM-DD)" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Idol (Pratima)",
+            "Pandal & Decor",
+            "Puja Samagri",
+            "Prasad & Bhog",
+            "Sound & Light",
+            "Priest & Rituals",
+            "Cultural Event",
+            "Other"
+          ],
+          "description": "Expense category"
+        },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "UPI", "Online"], "description": "Payment mode" },
+        "paidBy": { "type": "string", "description": "Committee member who made the payment" },
+        "notes": { "type": "string", "description": "Optional bill/vendor notes" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Record creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["id", "name", "amount", "date", "category", "paymentMethod", "paidBy"]
+    }
+  },
+  "firestore": {
+    "/puja2027_collections/{collectionId}": {
+      "schema": { "$ref": "entities/collection" },
+      "description": "Donation entries for Saraswati Puja 2027"
+    },
+    "/puja2027_expenses/{expenseId}": {
+      "schema": { "$ref": "entities/expense" },
+      "description": "Expense entries for Saraswati Puja 2027"
+    }
+  }
+}

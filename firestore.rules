@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Saraswati Puja 2027 Collections
+    match /puja2027_collections/{collectionId} {
+      allow read, write: if true;
+    }
+    // Saraswati Puja 2027 Expenses
+    match /puja2027_expenses/{expenseId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Saraswati Puja Collection 2027",
+  "description": "Mobile-friendly donation, member collection, expense tracker, WhatsApp receipt generator and financial reports for Saraswati Puja 2027.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
